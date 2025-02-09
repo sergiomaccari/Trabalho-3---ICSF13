@@ -2,7 +2,7 @@
 /* ICSF13 - 2024-2 - TRABALHO 3
 /* Alunos:
 /* Arthur Dal Bem Nunes -
-/* João Pedro Girelli -
+/* JoÃ£o Pedro Girelli -
 /* Sergio Roncato Maccari -
 /*----------------------------------------------------------------------------*/
 /* Professores:
@@ -28,21 +28,21 @@ typedef struct
     int y;
 } Coordenada;
 
-/* Um tipo simples, usado para representar um retângulo envolvente. */
+/* Um tipo simples, usado para representar um retÃ¢ngulo envolvente. */
 typedef struct
 {
     Coordenada tl; // top-left.
     Coordenada br; // bottom-right
 } Rect;
 
-/* Função central do trabalho. */
+/* FunÃ§Ã£o central do trabalho. */
 Rect* encontraFuros(Imagem1C* mask, int* n_furos)
 {
     int i, j;
     int largura = mask->largura, altura = mask->altura;
     *n_furos = 0;
 
-    // Inicializa a matriz de checagem que verificara mais a frente se os numeros ja fazem parte de um retangulo(objetivo nao repetir a formação de reatngulo)
+    // Inicializa a matriz de checagem que verificara mais a frente se os numeros ja fazem parte de um retangulo(objetivo nao repetir a formaÃ§Ã£o de reatngulo)
     int** matriz_checagem = (int**)malloc(altura * sizeof(int*));
     for (i = 0; i < altura; i++)
     {
@@ -65,7 +65,7 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
         }
     }
 
-    //De acordo com o enunciado, se o numero de furos for 0 a func retorna NULL. Nesse caso, da free na matriz pra verificação criada anteriormente
+    //De acordo com o enunciado, se o numero de furos for 0 a func retorna NULL. Nesse caso, da free na matriz pra verificaÃ§Ã£o criada anteriormente
     if (*n_furos == 0)
     {
         for (i = 0; i < altura; i++)
@@ -76,8 +76,8 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
         return NULL;
     }
 
-    // Alocação dinamica do vetor de retangulos, de acordo com o tamanho n_furos como dita o enunciado
-    Rect* vetor_de_retangulos = (Rect*)malloc(*n_furos * sizeof(Rect));  enunciado
+    // AlocaÃ§Ã£o dinamica do vetor de retangulos, de acordo com o tamanho n_furos como dita o enunciado
+    Rect* vetor_de_retangulos = (Rect*)malloc(*n_furos * sizeof(Rect));
 
     if (vetor_de_retangulos == NULL)
     {
@@ -97,10 +97,10 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
         {
             if (mask->dados[i][j] == BRANCO && matriz_checagem[i][j] == 0)
             {
-                // Definição dos limites do retangulo
+                // DefiniÃ§Ã£o dos limites do retangulo
                 int min_x = j, max_x = j, min_y = i, max_y = i;
 
-                //Talvez seria legal ou necessário colocar um condicional dentro de cada while para que ele nao extrapole os limites da imagem
+                //Talvez seria legal ou necessÃ¡rio colocar um condicional dentro de cada while para que ele nao extrapole os limites da imagem
 
                 // Aumenta o limite para a direita
                 while (mask->dados[i][max_x] == BRANCO)
@@ -114,7 +114,7 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
                     max_y++;
                 }
 
-                // // Aumenta o limite para baixo. Não é necessário aumentar o limite para cima devido como o loop percorre a amtrizICSF12
+                // // Aumenta o limite para baixo. NÃ£o Ã© necessÃ¡rio aumentar o limite para cima devido como o loop percorre a amtrizICSF12
                 while (mask->dados[i][min_x - 1] == BRANCO)
                 {
                     min_x--;
