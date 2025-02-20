@@ -96,15 +96,34 @@ while(availablePath)
             if(matriz_checagem[i][j] == BRANCO){  /*um dos vizinhos for symbol*/
                if(i+1<altura && i-1>=0 && j+1<largura && j-1>=0){
                     if(matriz_checagem[i+1][j] == symbol || matriz_checagem[i-1][j] == symbol
-                    || matriz_checagem[i][j+1] == symbol || matriz_checagem[i][j-1] == symbol  ))
-                {
-                matriz_checagem[i][j] = symbol;
-                availablePath = 1; //tem algo para fazer
-                // sera 1 pois se existe um vizinho com simbolo ele deve verificar de novo
+                    || matriz_checagem[i][j+1] == symbol || matriz_checagem[i][j-1] == symbol  )
+                    {
+                    matriz_checagem[i][j] = symbol;
+                    availablePath = 1; //tem algo para fazer
+                    // sera 1 pois se existe um vizinho com simbolo ele deve verificar de novo
+                    }
+               }
+               if(matriz_checagem[i][j]==BRANCO && (i=0 && j=0)&&(i=0 && j=largura-1)&&(i=altura-1 && j=0)&&(i=altura-1 && j=largura-1)) // se for um dos 4 cantos
+               {
+
+               }
+               else{
+                if(i+1==altura &&  (matriz_checagem[i-1][j] == symbol // Para lidar com as bordas da imagem
+                    || matriz_checagem[i][j+1] == symbol || matriz_checagem[i][j-1] == symbol)  )
+                    matriz_checagem[i][j] = symbol;
+                if(i-1==0 && (matriz_checagem[i+1][j] == symbol
+                    || matriz_checagem[i][j+1] == symbol || matriz_checagem[i][j-1] == symbol)  )
+                    matriz_checagem[i][j] = symbol;
+                if(j+1==largura && (matriz_checagem[i+1][j] == symbol || matriz_checagem[i-1][j] == symbol
+                    || matriz_checagem[i][j-1] == symbol))
+                    matriz_checagem[i][j] = symbol;
+                if(j-1==0 && (matriz_checagem[i+1][j] == symbol || matriz_checagem[i-1][j] == symbol
+                    || matriz_checagem[i][j+1] == symbol))
+                    matriz_checagem[i][j] = symbol;
+
                 }
             }
         }
-    }
     }
             // se a verificacao em cima deu que não exisge nenhum vizinho, deve atualizar o simbolo para o proximo e sinalizar que tem um vizinho availablePath = 1
             if (availablePath == 0) {
@@ -128,11 +147,6 @@ while(availablePath)
 
             }
 
-            for(i=0; i<altura; i++){
-                    printf("\n");
-                for(j=0; j<altura; j++)
-                printf("%d", matriz_checagem[i][j]);
-            }
 
 
 
