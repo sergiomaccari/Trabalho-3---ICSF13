@@ -9,22 +9,6 @@
 /* Leyza E. B. Dorini
 /============================================================================/
 
-#include "imagem.h"
-#include "trabalho3.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-#define BRANCO 1
-
-/* Função central do trabalho. */
-
-#include "imagem.h"
-#include "trabalho3.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-#define BRANCO 1
-
 /* Função central do trabalho. */
 
 #include "imagem.h"
@@ -78,7 +62,7 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
             free(matriz_checagem[i]);
         }
         free(matriz_checagem);
-        return; //nao deveria retornar NULL
+        return; //nao deveria retornar NULL??????????????????????????????????
     }
 
 //Essa parte do codigo é o looping principal, divididos em uma llop que preenche a amtriz_checahem com simbolos
@@ -95,7 +79,7 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
         {
             for(j=0; j<largura; j++)
             {
-                // chega se existe um vizinho com símbolo
+                // verifica se existe um vizinho com símbolo
                 if (matriz_checagem[i][j] == BRANCO)
                 {// eu separei os casos de cada borda/canto aqui também
                     if ((i > 0 && matriz_checagem[i-1][j] == symbol) ||
@@ -107,7 +91,7 @@ Rect* encontraFuros(Imagem1C* mask, int* n_furos)
                         availablePath = 1;
                     }
                     // manuseamento de bordas e cantos
-                    if (i == 0 || j == 0 || i == altura - 1 || j == largura - 1) 
+                    if (i == 0 || j == 0 || i == altura - 1 || j == largura - 1)
                     { // eu separei os casos de cada borda/canto aqui também
                         if ((i > 0 && matriz_checagem[i-1][j] == symbol) ||
                             (i < altura - 1 && matriz_checagem[i+1][j] == symbol) ||
